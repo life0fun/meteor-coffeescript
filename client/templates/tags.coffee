@@ -1,4 +1,4 @@
-Template.todo_tag.events = {
+Template.todo_tag.events =
   'click .remove': (evt) ->
     tag = this.tag
     id  = this.todo_id
@@ -8,9 +8,9 @@ Template.todo_tag.events = {
     Meteor.setTimeout(->
       Todos.update {_id: id}, {$pull: {tags: tag}}
     , 300)
-  }
 
-# Pick out the unique tags from all todos in current list.
+# template's computed property. called from template when it trying to render a list item.
+# list comprehension to ret a map of {tag: name, count: 10}
 Template.tag_filter.tags = ->
   tag_counts  = {}
   total_count = 0
@@ -29,23 +29,33 @@ Template.tag_filter.tags = ->
 
   return tag_infos
 
-Template.tag_item.tag_text = -> this.tag or "All items"
+# tag_item is item in the top bar tag_filter
+Template.tag_item.tag_text = -> 
+  console.log "getting tag_text :", this.tag
+  this.tag or "All items"
 
-Template.tag_item.selected = -> if Session.equals('tag_filter', this.tag) then 'selected' else ''
+Template.tag_item.selected = -> 
+  if Session.equals('tag_filter', this.tag) then 'selected' else ''
 
-Template.tag_item.events = {
+# tag_item is an item in top tag_filter list collection.
+Template.tag_item.events
   'mousedown': ->
+    console.log "tag_item events "
     if Session.equals 'tag_filter', this.tag
       Session.set 'tag_filter', null
     else
       Session.set 'tag_filter', this.tag
-  }
 
-$ ->
-  add_inline_editing_events Template.todo_item, "#edittag-input", {
-    ok: (value) ->
-      Todos.update this._id, {$addToSet: {tags: value}}
-      Session.set "editing_addtag", null
-    cancel: ->
-      Session.set "editing_addtag", null
-  }
+
+# bind todo_item dom event handler
+editTagHdl =
+  ok: (value) ->
+    console.log "editting tag value ", value
+    Todos.update this._id, {$addToSet: {tags: value}}
+    Session.set "editing_addtag", null
+  cancel: ->
+    Session.set "editing_addtag", null
+
+evtmap = okCancelEvents "#edittag-input", editTagHdl
+console.log "setting up evtmap :", evtmap
+Template.todo_item.events evtmap

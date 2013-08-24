@@ -1,13 +1,7 @@
-<template name="todo_tag">
-  <div class="tag removable_tag">
-    <div class="name">{{tag}}</div>
-    <div class="remove"></div>
-  </div>
-</template>
-
+<!-- at the top of page showing all tags in current list and counts -->
 <template name="tag_filter">
   <div id="tag-filter" class="tag-list">
-    <div class="label">Show:</div>
+    <div class="label">Tags: </div>
     {{#each tags}}
       {{> tag_item}}
     {{/each}}
