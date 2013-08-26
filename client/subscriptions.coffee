@@ -10,22 +10,28 @@ Session.set 'editing_addtag', null
 # When editing a list name, ID of the list
 Session.set 'editing_listname', null
 
-# Define Minimongo collections to match server/publish.js.
-#Lists = new Meteor.Collection "lists"
-#Todos = new Meteor.Collection "todos"
+# module scope variable declare once
+subListHdl = subListHdl ? null
 
 # Subscribe to 'lists' collection on startup.
-# Select a list once data has arrived.
-Meteor.subscribe 'lists', ->
-  console.log 'in meteor subscribe lists '
-  if !Session.get('list_id')
-    list = Lists.findOne {}, {sort: {name: 1}}
-    console.log 'in meteor subscribe lists, random list ', list
-    Router.setList(list._id) if list
+# this should called only once.
+@subscribeToList = ->
+  console.log "subscribe to list handle ", subListHdl
+  if not subListHdl?
+    subListHdl = Meteor.subscribe 'lists', ->
+      if !Session.get('list_id')
+        list = Lists.findOne {}, {sort: {name: 1}}
+        Router.setList(list._id) if list
+    console.log "after sub list handle ", subListHdl
+
 
 # Always be subscribed to the todos for the selected list.
-Meteor.autosubscribe ->
-  console.log 'in meteor auto subscribe lists ', list_id
-  list_id = Session.get 'list_id'
-  Meteor.subscribe 'todos', list_id if list_id
+# autosubscribe is deprecated, use autoRun.
+# When you want to automatically update the subscription whenever the session variable changes.
+@subscriptionHdl
+autoRun = ->
+  Deps.autorun ->
+    list_id = Session.get 'list_id'
+    console.log 'session vars changed, auto subscribe lists ', list_id
+    subscriptionHdl = Meteor.subscribe 'todos', list_id if list_id
 

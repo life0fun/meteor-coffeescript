@@ -254,3 +254,11 @@ h3 {
     width: 80px;
 }
 
+/* google map */
+#map-canvas {
+    top: 45px;
+    left: 220px;
+    width: 1260px;
+    height: 800px;
+    overflow: auto;
+}

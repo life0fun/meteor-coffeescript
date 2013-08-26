@@ -17,7 +17,7 @@
         ok.call this, value, evt
       else
         cancel.call this, evt
-  
+  # return event map to template events fn
   eventmap
 
 # Returns an event_map key for attaching "ok/cancel" events to

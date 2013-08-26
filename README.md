@@ -7,11 +7,11 @@ The reason for this project is because I could not find good document of coffees
 
 ## Dependency and Usage
 
-install or upgrade to latest meteor 0.6.5
+install or upgrade to latest meteor 0.6.5.
     curl https://install.meteor.com | /bin/sh
     meteor update
 
-install meteorite.  
+install meteorite.
     npm install -g meteorite
 
 Module/package depdency is defined in .meteor/packages and smart.json
@@ -37,6 +37,8 @@ Module/package depdency is defined in .meteor/packages and smart.json
   3. Meteor has global share object for module to attach global variables.
     __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptShare : {}; var share = __coffeescriptShare;
 
-
+## Google map canvas
+  1. need to give google map canvas div height and width size in css. Otherwise somehow the computed height of map canvas height is 0 that makes map canvas not visible.
+  2. ensure google maps API loaded first and then run meteor script to render your template. Render map canvas template in Template.rendered callback. You can also use the .created method instead of .rendered to perform tasks only once 
 
 

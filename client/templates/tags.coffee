@@ -31,7 +31,6 @@ Template.tag_filter.tags = ->
 
 # tag_item is item in the top bar tag_filter
 Template.tag_item.tag_text = -> 
-  console.log "getting tag_text :", this.tag
   this.tag or "All items"
 
 Template.tag_item.selected = -> 
