@@ -23,6 +23,9 @@ subListHdl = subListHdl ? null
         list = Lists.findOne {}, {sort: {name: 1}}
         Router.setList(list._id) if list
     console.log "after sub list handle ", subListHdl
+  list_id = Session.get 'list_id'
+  console.log 'session vars changed, auto subscribe lists ', list_id
+  subscriptionHdl = Meteor.subscribe 'todos', list_id if list_id
 
 
 # Always be subscribed to the todos for the selected list.

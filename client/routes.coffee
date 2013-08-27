@@ -10,6 +10,7 @@ TodosRouter = Backbone.Router.extend {
     Session.set "tag_filter", null
     subscribeToList()
     frag = Meteor.render Template.todoslayout
+    $(document.body).empty()
     document.body.appendChild frag
 
   setList: (list_id) ->

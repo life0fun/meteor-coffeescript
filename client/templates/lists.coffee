@@ -40,6 +40,7 @@ Template.lists.events evtmap
 # input box existing list input box(focus after dblclick) event handler
 listInputHdl =
   ok: (text) ->
+    console.log "input list :", text
     Lists.update this._id, {$set: {name: text}}
     Session.set 'editing_listname', null
   cancel: () ->
