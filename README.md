@@ -14,10 +14,15 @@ install or upgrade to latest meteor 0.6.5.
 install meteorite.
     npm install -g meteorite
 
+As I did not upload the .meteor folder, you need to create meteor project first and then copy all files over.
+    meteor create my-app
+
 Module/package depdency is defined in .meteor/packages and smart.json
   1. make sure standard-app-packages is included in .meteor/packages
   2. mrt add iron-router will add to both .meteor/packages and smart.json
   3. mrt remove autopublish to remove from .meteor/packages
+  4. meteor add underscore, backbone, coffeescript, d3
+
 
 ## EventMap
   1. Template.tmplname.events is fn that takes event map of evt type to evt handler.

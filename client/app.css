@@ -16,6 +16,8 @@ body {
     line-height: 1.5;
     background: #eeeeee;
     color: #333333;
+    margin: 30px auto;
+    width: 1280px;
 }
 
 body, input {
@@ -261,4 +263,121 @@ h3 {
     width: 1260px;
     height: 800px;
     overflow: auto;
+}
+
+
+/* for cubism d3 */
+.cubtop {
+    top: -1px;
+    margin: 2px;
+    /*float: left;*/
+    /*background-color:blue;*/
+    overflow:hidden;
+    /*background: #999;*/
+    color: red;
+    padding: 4px;
+}
+
+.metricslabel {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+    padding: 4px;
+    left: 0px;
+}
+
+.axis {
+  font: 12px sans-serif;
+  position: fixed;
+  pointer-events: none;
+  z-index: 2;
+  color: red;
+}
+
+.axis text {
+  -webkit-transition: fill-opacity 250ms linear;
+  color: red;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis line {
+  /*stroke: #000;*/
+  -webkit-text-stroke: 2px black;
+  width: 10px;
+  /*shape-rendering: crispEdges;*/
+}
+
+.axis.top {
+  background-image: linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -o-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -moz-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -ms-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  top: 0px;
+  padding: 0 0 24px 0;
+}
+
+.axis.bottom {
+  background-image: linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -o-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -moz-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -webkit-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
+  background-image: -ms-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
+  bottom: 0px;
+  padding: 24px 0 0 0;
+}
+
+.horizon {
+  border-bottom: solid 1px #000;
+  overflow: hidden;
+  position: relative;
+}
+
+.horizon {
+  border-top: solid 1px #000;
+  border-bottom: solid 1px #000;
+}
+
+.horizon + .horizon {
+  border-top: none;
+}
+
+.horizon canvas {
+  display: block;
+}
+
+.horizon .title {
+  bottom: 0;
+  line-height: 30px;
+  margin: 0 6px;
+  position: absolute;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  white-space: nowrap;
+  color: blue;
+}
+
+.horizon .value {
+  bottom: 0;
+  line-height: 30px;
+  margin: 0 1px;
+  position: absolute;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  white-space: nowrap;
+  color: red;
+}
+
+.horizon .title {
+  left: 0;
+}
+
+.horizon .value {
+  right: 0;
+}
+
+.line {
+  background: #000;
+  z-index: 2;
 }

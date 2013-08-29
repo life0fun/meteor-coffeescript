@@ -2,7 +2,8 @@ TodosRouter = Backbone.Router.extend {
   routes:
     "": "todos",
     "todos/:list_id": "todos",
-    "map": "map"
+    "map": "map",
+    "graphite": "graphite"
 
   todos: (list_id) ->
     console.log "todos route :", list_id
@@ -20,6 +21,14 @@ TodosRouter = Backbone.Router.extend {
     console.log "route map"
     frag = Meteor.render Template.map
     Session.set "list_id", null
+    $(document.body).empty()
+    document.body.appendChild frag
+    
+  graphite: ->
+    console.log "displaying graphite cubism.."
+    frag = Meteor.render Template.cubism
+    Session.set "list_id", null
+    $(document.body).empty()
     document.body.appendChild frag
 }
 
